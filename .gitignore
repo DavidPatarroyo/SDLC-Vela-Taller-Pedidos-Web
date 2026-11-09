@@ -1,0 +1,18 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+TestResults/
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Secretos: nunca al repo
+.env
+*.pem
