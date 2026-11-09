@@ -13,7 +13,12 @@ public static class FolioFormatter
     /// <param name="sucursal">Código de la sucursal: de 2 a 4 letras de la A a la Z.</param>
     public static string FormatearFolio(int numero, string sucursal)
     {
-        throw new NotImplementedException(
-            "Implementa FormatearFolio() siguiendo las reglas del README (paso 3 del taller).");
+        if (numero < 1 || numero > 999999)
+            throw new ArgumentOutOfRangeException("numero");
+        if (sucursal is null)
+            throw new ArgumentNullException("sucursal");
+        sucursal = sucursal.ToUpper().Trim();
+
+        return $"PED-{sucursal.ToUpper().Trim()}-{numero.ToString().PadLeft(6, '0')}";
     }
 }
