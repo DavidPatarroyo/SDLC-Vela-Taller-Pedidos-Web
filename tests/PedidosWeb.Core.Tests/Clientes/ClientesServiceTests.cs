@@ -9,7 +9,7 @@ public class ClientesServiceTests
     [Fact]
     public void Proc2_ClienteInexistente_DevuelveTextoVacio()
     {
-        var ficha = _servicio.proc2("C-999");
+        var ficha = _servicio.ObtenerFicha("C-999");
 
         Assert.Equal("", ficha);
     }
@@ -17,7 +17,7 @@ public class ClientesServiceTests
     [Fact]
     public void Proc2_ClienteActivo_DevuelveLaFicha()
     {
-        var ficha = _servicio.proc2("C-001");
+        var ficha = _servicio.ObtenerFicha("C-001");
 
         Assert.Equal("Ferretería El Clavo | 76123456-0 | Zona centro | Activo", ficha);
     }
@@ -25,7 +25,7 @@ public class ClientesServiceTests
     [Fact]
     public void Proc2_RutConPuntosYKMinuscula_LoNormaliza()
     {
-        var ficha = _servicio.proc2("C-004");
+        var ficha = _servicio.ObtenerFicha("C-004");
 
         Assert.Equal("Almacén La Esquina | 76990011-K | Zona centro | Activo", ficha);
     }

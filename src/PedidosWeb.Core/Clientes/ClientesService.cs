@@ -14,7 +14,7 @@ public class ClientesService
     }
 
     // ficha del cliente para la pantalla
-    public string proc2(string id)
+    public string ObtenerFicha(string id)
     {
         Cliente? c = null;
         for (int i = 0; i < _l.Count; i++)
