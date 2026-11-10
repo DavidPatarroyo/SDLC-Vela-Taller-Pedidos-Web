@@ -16,3 +16,6 @@ Thumbs.db
 # Secretos: nunca al repo
 .env
 *.pem
+
+# Claude Code: configuración personal de cada desarrollador
+.claude/settings.local.json
