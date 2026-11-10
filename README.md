@@ -2,7 +2,7 @@
 
 Portal web de pedidos de la distribuidora. Es la modernización de **Pedidos Legado**, un sistema de escritorio hecho en Delphi con DBISAM que la empresa usa hace 18 años.
 
-Este repositorio es el **caso hilo** del curso *Desarrollando con IA* (Vela LATAM). Crece unidad a unidad: hoy (Unidad 1) tiene una biblioteca con la primera función del dominio; en las próximas unidades se suman la API en ASP.NET Core, el módulo de totales migrado, PostgreSQL y el pipeline de CI.
+Este repositorio es el **caso hilo** del curso *Desarrollando con IA* (Vela LATAM). Crece unidad a unidad: hoy tiene la biblioteca de dominio (Unidad 1) y una API en ASP.NET Core con 45 pedidos de ejemplo en memoria (Unidad 2); después se suman el módulo de totales migrado, PostgreSQL y el pipeline de CI.
 
 > Todo el contenido es ficticio y tiene fines educativos.
 
@@ -20,59 +20,85 @@ Este repositorio es el **caso hilo** del curso *Desarrollando con IA* (Vela LATA
 
 ```
 pedidos-web/
-├── AGENTS.md                         ← reglas del proyecto para agentes de IA
+├── AGENTS.md                         ← U2: vacío a propósito; lo escribes en el paso 1 del taller
 ├── PedidosWeb.sln
 ├── src/
-│   └── PedidosWeb.Core/              ← lógica de dominio
-│       └── Folios/FolioFormatter.cs  ← aquí implementas FormatearFolio()
+│   ├── PedidosWeb.Core/              ← lógica de dominio
+│   │   ├── Folios/FolioFormatter.cs  ← U1: aquí implementas FormatearFolio()
+│   │   └── Pedidos/                  ← U2: modelo Pedido y repositorio en memoria
+│   └── PedidosWeb.Api/               ← U2: API REST (Minimal API)
+│       └── Program.cs
 ├── tests/
 │   └── PedidosWeb.Core.Tests/        ← tests xUnit
-│       └── Folios/FolioFormatterTests.cs
-└── docs/                             ← plantilla-mapa-sdlc.md y tu mapa-sdlc.md (paso 4)
+│       ├── Folios/FolioFormatterTests.cs
+│       └── Pedidos/PedidoRepositorioEnMemoriaTests.cs
+├── docs/                             ← U1: aquí va tu mapa-sdlc.md
+└── specs/                            ← U2: aquí van las specs de cada historia
 ```
 
 ## Cómo empezar
 
-Necesitas Git, una cuenta de GitHub y el [SDK de .NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0).
+Elige **un** camino. El A es el normal.
 
-1. **Crea tu propio repositorio.** Este proyecto se entrega una sola vez: lo copias fuera del material del curso y lo usas en tu cuenta de GitHub hasta la Unidad 10.
+### A. Ya tienes tu repo `pedidos-web` de la Unidad 1 (lo normal)
 
-   ```bash
-   git clone https://github.com/ffelipecuevasc/material-curso-ia-desarrolladores.git
-   ```
+No copies la carpeta completa: pisarías tu `FolioFormatter.cs` y tu `docs/mapa-sdlc.md`. Copia **solo lo nuevo de la Unidad 2**. Trabaja en la carpeta que contiene tu `pedidos-web` y el material del curso, uno al lado del otro.
 
-   Copia la carpeta del caso al lado del material (no adentro):
+```bash
+# macOS, Linux o WSL
+cd material-curso-ia-desarrolladores && git pull && cd ..
+U2=material-curso-ia-desarrolladores/unidad-2/taller/pedidos-web
+cp -r $U2/src/PedidosWeb.Api pedidos-web/src/
+cp -r $U2/src/PedidosWeb.Core/Pedidos pedidos-web/src/PedidosWeb.Core/
+cp -r $U2/tests/PedidosWeb.Core.Tests/Pedidos pedidos-web/tests/PedidosWeb.Core.Tests/
+cp -r $U2/specs pedidos-web/
+cp $U2/PedidosWeb.sln $U2/AGENTS.md $U2/README.md pedidos-web/
+```
 
-   ```bash
-   # macOS, Linux o WSL
-   cp -r material-curso-ia-desarrolladores/unidad-1/taller/pedidos-web ./pedidos-web
-   ```
+```powershell
+# Windows PowerShell
+cd material-curso-ia-desarrolladores; git pull; cd ..
+$U2 = "material-curso-ia-desarrolladores/unidad-2/taller/pedidos-web"
+Copy-Item -Recurse "$U2/src/PedidosWeb.Api" pedidos-web/src/
+Copy-Item -Recurse "$U2/src/PedidosWeb.Core/Pedidos" pedidos-web/src/PedidosWeb.Core/
+Copy-Item -Recurse "$U2/tests/PedidosWeb.Core.Tests/Pedidos" pedidos-web/tests/PedidosWeb.Core.Tests/
+Copy-Item -Recurse "$U2/specs" pedidos-web/
+Copy-Item "$U2/PedidosWeb.sln", "$U2/AGENTS.md", "$U2/README.md" pedidos-web/
+```
 
-   ```powershell
-   # Windows PowerShell
-   Copy-Item -Recurse material-curso-ia-desarrolladores/unidad-1/taller/pedidos-web ./pedidos-web
-   ```
+`PedidosWeb.sln` se reemplaza porque ahora incluye el proyecto `PedidosWeb.Api`. `AGENTS.md` se reemplaza por uno **vacío a propósito**: en el paso 1 del taller escribes el tuyo con el prompt maestro. Las reglas de la Unidad 1 siguen en tu historial de Git (`git log -p -- AGENTS.md`), por si quieres rescatar alguna.
 
-   Conviértela en tu repo. Antes, crea en GitHub un repositorio vacío llamado `pedidos-web` (sin README ni .gitignore):
+Guarda el punto de partida con un commit:
 
-   ```bash
-   cd pedidos-web
-   git init -b main
-   git add .
-   git commit -m "chore: proyecto inicial Pedidos Web (U1)"
-   git remote add origin https://github.com/TU-USUARIO/pedidos-web.git
-   git push -u origin main
-   ```
+```bash
+cd pedidos-web
+git add .
+git commit -m "chore: base de la Unidad 2 (API y pedidos de ejemplo)"
+git push
+```
 
-2. Abre **tu** carpeta `pedidos-web` en Rider: **File → Open** y elige `PedidosWeb.sln`.
-3. Compila y ejecuta los tests desde la terminal integrada de Rider. La primera vez descarga paquetes de NuGet: hazlo ahora, no en el paso 3.
+### B. No tienes el repo de la Unidad 1
+
+Sigue el paso 1 del README de `unidad-1/taller/pedidos-web` (crear tu repo en GitHub), pero copia esta carpeta (`unidad-2/taller/pedidos-web`) en vez de la de la Unidad 1.
+
+### Compila, prueba y levanta la API
+
+1. Abre **tu** carpeta `pedidos-web` en Rider: **File → Open** y elige `PedidosWeb.sln`.
+2. Compila y ejecuta los tests desde la terminal integrada de Rider:
 
    ```bash
    dotnet build
    dotnet test
    ```
 
-4. **Resultado esperado hoy:** compila y los 3 tests de `FolioFormatterTests` fallan con `NotImplementedException`. Es normal: la función todavía no existe. La implementas en el paso 3 del taller.
+3. **Resultado esperado:** compila y los 4 tests de `PedidoRepositorioEnMemoriaTests` pasan. Los 3 de `FolioFormatterTests` pasan si vienes del camino A con `FormatearFolio()` implementada, y fallan con `NotImplementedException` si vienes del camino B (es normal: esa función es del taller de la Unidad 1).
+4. Levanta la API:
+
+   ```bash
+   dotnet run --project src/PedidosWeb.Api
+   ```
+
+   Abre `http://localhost:5080/salud` (responde `{"estado":"ok"}`) y `http://localhost:5080/api/pedidos/8` (detalle de un pedido). Detén la API con `Ctrl+C`.
 
 ---
 
@@ -139,12 +165,53 @@ PED-{SUCURSAL}-{NUMERO}
 
 | Paso | Qué haces aquí |
 |---|---|
-| 1 | Creas tu repo (ver «Cómo empezar»), compruebas que `dotnet test` corre (3 tests en rojo), abres `claude` en la terminal integrada de Rider, dentro de esta carpeta, y le preguntas: *«¿Cuáles son las reglas de este proyecto?»*. Debe citar `AGENTS.md`. |
+| 1 | Abres `claude` en la terminal integrada de Rider, dentro de esta carpeta, y le preguntas: *«¿Cuáles son las reglas de este proyecto?»*. Debe citar `AGENTS.md`. |
 | 3 | Implementas `FormatearFolio()` dos veces: **ronda A sin IA** y **ronda B con Claude Code**. Anotas tiempo, errores y qué corregiste. Entre una ronda y otra puedes volver al estado inicial con `git stash` o `git checkout -- src`. |
-| 4 | Copias `docs/plantilla-mapa-sdlc.md` como `docs/mapa-sdlc.md` y lo completas. |
-| 5 | Haces commit y push: `git add docs/mapa-sdlc.md`, `git commit -m "docs: mapa de uso de IA en el SDLC (U1)"` y `git push`. |
+| 4 | Creas `docs/mapa-sdlc.md` con la plantilla de la guía. |
+| 5 | Haces commit: `git add docs/mapa-sdlc.md` y `git commit -m "docs: mapa de uso de IA en el SDLC (U1)"`. |
 
 ## Licencias
 
 - Claude Team Standard (Claude Code se autentica con la cuenta Team).
 - JetBrains All Products Pack (Rider).
+
+---
+
+## Taller de la Unidad 2: los pedidos
+
+### Qué hay hoy
+
+- **Modelo** `Pedido` (`src/PedidosWeb.Core/Pedidos/Pedido.cs`): `Id`, `Folio`, `ClienteId`, `ClienteNombre`, `Fecha` (`DateOnly`), `Estado` (texto), `Total` (CLP, `decimal` sin decimales, nunca `double` ni `float`) y `Sucursal`.
+- **Repositorio en memoria** con **45 pedidos de ejemplo** entre el 2 de septiembre y el 31 de octubre de 2026. Todos son ficticios.
+- **Endpoints:** `GET /salud` y `GET /api/pedidos/{id}`.
+- **Todavía no existe** el listado con filtros: es la historia **HU-01** que construyes en el taller.
+- **`AGENTS.md` está vacío a propósito.** Lo escribes tú en el paso 1, con el prompt maestro y la guía de [agents.md](https://agents.md/).
+
+### Los datos de ejemplo, en números
+
+| Cliente | Pedidos |
+|---|---|
+| C-001 · Ferretería El Clavo | 5 |
+| C-002 · Minimarket Doña Rosa | 6 |
+| C-003 · Botillería Los Andes | 6 |
+| C-004 · Almacén La Esquina | 5 |
+| C-005 · Panadería San Camilo | 6 |
+| C-006 · Supermercado del Valle | 6 |
+| C-007 · Kiosco Central | 5 |
+| C-008 · Distribuidora Norte | 6 |
+
+| Estado (texto en los datos) | Pedidos |
+|---|---|
+| Pendiente | 5 |
+| Confirmado | 10 |
+| Despachado | 10 |
+| Entregado | 15 |
+| Anulado | 5 |
+
+Hay 22 pedidos en septiembre y 23 en octubre.
+
+### La historia del Product Owner
+
+> «Como vendedor, quiero listar pedidos filtrando por cliente, estado y rango de fechas.»
+
+La historia es vaga a propósito: no dice qué estados son válidos para filtrar, qué pasa con fechas invertidas, cuántos resultados se devuelven ni cómo se informa un error. **Esas decisiones las tomas tú en `specs/HU-01-listar-pedidos/spec.md`** (paso 2 del taller). Que los datos tengan cinco estados no significa que tu API deba aceptar cualquier texto como filtro.

@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A1B2C3D4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PedidosWeb.Core", "src\PedidosWeb.Core\PedidosWeb.Core.csproj", "{A1B2C3D4-0003-4000-8000-000000000003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PedidosWeb.Api", "src\PedidosWeb.Api\PedidosWeb.Api.csproj", "{A1B2C3D4-0005-4000-8000-000000000005}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PedidosWeb.Core.Tests", "tests\PedidosWeb.Core.Tests\PedidosWeb.Core.Tests.csproj", "{A1B2C3D4-0004-4000-8000-000000000004}"
 EndProject
 Global
@@ -25,6 +27,10 @@ Global
 		{A1B2C3D4-0004-4000-8000-000000000004}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B2C3D4-0004-4000-8000-000000000004}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1B2C3D4-0004-4000-8000-000000000004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-0005-4000-8000-000000000005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-0005-4000-8000-000000000005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-0005-4000-8000-000000000005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-0005-4000-8000-000000000005}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +38,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A1B2C3D4-0003-4000-8000-000000000003} = {A1B2C3D4-0001-4000-8000-000000000001}
 		{A1B2C3D4-0004-4000-8000-000000000004} = {A1B2C3D4-0002-4000-8000-000000000002}
+		{A1B2C3D4-0005-4000-8000-000000000005} = {A1B2C3D4-0001-4000-8000-000000000001}
 	EndGlobalSection
 EndGlobal
