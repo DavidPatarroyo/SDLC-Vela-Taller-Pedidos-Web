@@ -1,0 +1,31 @@
+ID_CLIENTE,RUT,RAZON_SOCIAL,TIPO,REGION,DIRECCION,TELEFONO,SALDO_VENCIDO,FECHA_VENCIMIENTO,ACTIVO
+1,76600853-4,Almacén Los Aromos,N,13,Calle Larga 137,02-5550101,0,,TRUE
+2,78281283-1,Minimarket El Trébol,N,13,Pasaje Las Rosas 174,02-5550102,0,,TRUE
+3,77614555-6,Comercial Santa Inés,N,13,Av. Central 211,02-5550103,480000,2025-02-10,TRUE
+4,76459842-3,Botillería La Pérgola,V,13,Calle Comercio 248,02-5550104,0,,TRUE
+5,76212117-4,Supermercado Don Ramiro,V,13,Camino Real 285,02-5550105,0,,TRUE
+6,77667474-5,Almacén El Faro,N,13,Av. Los Pinos 322,02-5550106,0,,TRUE
+7,76500005-K,Distribuidora Las Vertientes,N,13,Calle Larga 359,02-5550107,0,,TRUE
+8,77549037-3,Kiosco La Plaza,N,13,Pasaje Las Rosas 396,02-5550108,125000,2025-03-03,TRUE
+9,76629214-3,Comercial Río Claro,N,5,Av. Central 433,02-5550109,0,,TRUE
+10,77383512-8,Panadería La Espiga Dorada,N,5,Calle Comercio 470,02-5550110,0,,TRUE
+11,76500013-0,Minimarket Villa Alegre,N,6,Camino Real 507,02-5550111,0,,TRUE
+12,76980346-7,Almacén Doña Eliana,N,7,Av. Los Pinos 544,02-5550112,0,,TRUE
+13,76930700-1,Comercial Austral Sur,V,11,Calle Larga 581,02-5550113,0,,TRUE
+14,78963998-1,Supermercado El Ventisquero,N,11,Pasaje Las Rosas 618,02-5550114,0,,TRUE
+15,78273710-4,Almacén Puerto Nuevo,V,12,Av. Central 655,02-5550115,0,,TRUE
+16,77497179-3,Comercial Cordillera Blanca,N,12,Calle Comercio 692,02-5550116,0,,TRUE
+17,78369680-0,Minimarket Los Copihues,N,8,Camino Real 729,02-5550117,0,,TRUE
+18,76500019-k,Almacén San Expedito,N,8,Av. Los Pinos 766,02-5550118,0,,TRUE
+19,76710709-9,Comercial El Molino Viejo,N,9,Calle Larga 803,02-5550119,64000,2025-06-02,TRUE
+20,77146801-2,Botillería Tres Esquinas,N,10,Pasaje Las Rosas 840,02-5550120,0,,TRUE
+21,76629035-3,Supermercado La Cosecha,V,14,Av. Central 877,02-5550121,0,,TRUE
+22,77783295-6,Almacén Brisa Marina,N,16,Calle Comercio 914,02-5550122,0,,TRUE
+23,76500027-0,Comercial Valle Verde,N,4,Camino Real 951,02-5550123,0,,TRUE
+24,78377263-9,Minimarket El Retorno,N,4,Av. Los Pinos 988,02-5550124,210000,2025-06-16,TRUE
+25,78316965-7,Almacén Las Golondrinas,N,2,Calle Larga 1025,02-5550125,0,,TRUE
+26,78936661-6,Comercial Pampa Norte,N,1,Pasaje Las Rosas 1062,02-5550126,0,,TRUE
+27,78587175-8,Kiosco Estación Central Ficticia,N,13,Av. Central 1099,02-5550127,0,,FALSE
+28,78614043-9,Almacén El Roble,N,3,Calle Comercio 1136,02-5550128,0,,TRUE
+29,78606484-8,Comercial Altos del Lago,V,10,Camino Real 1173,02-5550129,0,,TRUE
+30,78289380-7,Minimarket Punta Arenosa,N,15,Av. Los Pinos 1210,02-5550130,0,,FALSE

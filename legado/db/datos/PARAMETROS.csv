@@ -1,0 +1,7 @@
+CLAVE,VALOR,DESCRIPCION
+TASA_IVA,19,Tasa de IVA en porcentaje
+PEDIDO_MINIMO,25000,Monto minimo de pedido fuera de Santiago
+IMPRESORA,LPT1,Puerto de la impresora de matriz
+VERSION,2.3.1,Version del sistema
+DESC_NAVIDAD,N,Descuento de navidad activo (S/N)
+EMPRESA,Distribuidora Mayorista (nombre ficticio),Nombre en informes
